@@ -1,0 +1,12 @@
+public class Solution {
+    public static int removeDuplicates(int[] A) {
+	int count = 0;
+	int len = A.length;
+	for (int i = 0; i < len; i++) {
+		if (count == 0 || A[i] != A[i - 1]) {
+			A[count++] = A[i];
+		}
+	}
+	return count;
+}
+}
