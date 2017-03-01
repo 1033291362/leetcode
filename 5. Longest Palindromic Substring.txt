@@ -1,0 +1,45 @@
+//public class Solution {
+    public String longestPalindrome(String s) {
+        int lo=0,li=0;
+        if(s.length()<2)return s;
+        HashMap<Character,Integer> map= new HashMap<Character,Integer>();
+        int max=0;
+        String t = "";
+        for(int i=0,j=0;i<s.length();i++){
+            if(map.containsKey(s.charAt(i))){
+                j = Math.max(j,map.get(s.charAt(i))+1);
+                if(max<i-j+1){
+                max=i-j+1;
+                t= s.substring(j-1,i+1);
+                }
+            }
+            map.put(s.charAt(i),i);
+        }
+        return t;
+    }
+}这个答案不能接受有多个重复的字母//
+public class Solution {
+private int lo, maxLen;
+
+public String longestPalindrome(String s) {
+	int len = s.length();
+	if (len < 2)
+		return s;
+	
+    for (int i = 0; i < len-1; i++) {
+     	extendPalindrome(s, i, i);  //assume odd length, try to extend Palindrome as possible
+     	extendPalindrome(s, i, i+1); //assume even length.
+    }
+    return s.substring(lo, lo + maxLen);
+}
+
+private void extendPalindrome(String s, int j, int k) {
+	while (j >= 0 && k < s.length() && s.charAt(j) == s.charAt(k)) {
+		j--;
+		k++;
+	}
+	if (maxLen < k - j - 1) {
+		lo = j + 1;
+		maxLen = k - j - 1;
+	}
+}}
