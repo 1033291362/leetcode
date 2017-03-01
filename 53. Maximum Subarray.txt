@@ -1,0 +1,11 @@
+public class Solution {
+    public static int maxSubArray(int[] A) {
+    int maxSoFar=A[0], maxEndingHere=A[0];
+    for (int i=1;i<A.length;++i){
+    	maxEndingHere= Math.max(maxEndingHere+A[i],A[i]);
+    	maxSoFar=Math.max(maxSoFar, maxEndingHere);	
+    }
+    return maxSoFar;
+}
+}//大概就是第一行判断新来的数大还是以前的数加上新来的数大
+//第二行是判断以前的大还是新来的大
