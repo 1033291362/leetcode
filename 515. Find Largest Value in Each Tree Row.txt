@@ -1,0 +1,26 @@
+/**
+ * Definition for a binary tree node.
+ * public class TreeNode {
+ *     int val;
+ *     TreeNode left;
+ *     TreeNode right;
+ *     TreeNode(int x) { val = x; }
+ * }
+ */
+public class Solution {
+    public List<Integer> largestValues(TreeNode root) {
+        List<Integer> list =new ArrayList<Integer>();
+        zhixing(root,list,0);
+        return list;
+    }
+    private void zhixing(TreeNode root,List<Integer> list,int D){
+        if(root==null)return;
+        if(D==list.size()){
+            list.add(root.val);
+        }else{
+            list.set(D,Math.max(root.val,list.get(D)));
+        }
+        zhixing(root.left,list,D+1);
+        zhixing(root.right,list,D+1);
+    }
+}
